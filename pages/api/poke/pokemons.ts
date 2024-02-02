@@ -1,11 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import FetchRegionsUsecase from "../../../src/use-cases/fetch-regions";
+import { inject } from "inversify";
+import FetchPokemonsUsecase from "../../../src/use-cases/fetch-poke";
 import { container } from "../../../src/infra/inversify.config";
 
 class ApiHandler {
-  private useCase: FetchRegionsUsecase;
+  private useCase: FetchPokemonsUsecase;
   constructor() {
-    this.useCase = container.get(FetchRegionsUsecase);
+    this.useCase = container.get(FetchPokemonsUsecase);
   }
 
   async handleRequest(
@@ -27,7 +28,7 @@ class ApiHandler {
     } catch (err) {
       res
         .status(500)
-        .json({ error: "Failed to fetch and process data regions", err });
+        .json({ error: "Failed to fetch and process data pokemons", err });
     }
   }
 }

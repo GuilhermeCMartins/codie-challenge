@@ -42,6 +42,8 @@ export const CustomDropdown = styled.div<{ $isOpen: boolean }>`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: ${(props) => (props.$isOpen ? "block" : "none")};
   z-index: 999;
+  max-height: 200px;
+  overflow-y: scroll;
 `;
 
 export const ErrorMessage = styled.h3`

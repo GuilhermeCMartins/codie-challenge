@@ -1,11 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import FetchRegionsUsecase from "../../../src/use-cases/fetch-regions";
+import FetchCityUsecase from "../../../src/use-cases/fetch-cities";
 import { container } from "../../../src/infra/inversify.config";
 
 class ApiHandler {
-  private useCase: FetchRegionsUsecase;
+  private useCase: FetchCityUsecase;
   constructor() {
-    this.useCase = container.get(FetchRegionsUsecase);
+    this.useCase = container.get(FetchCityUsecase);
   }
 
   async handleRequest(
