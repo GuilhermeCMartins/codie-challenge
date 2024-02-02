@@ -1,13 +1,13 @@
 import Image from "next/image";
-import { Box, Container, RestartButton, Subtitle, Title } from "./styles";
 import { useRouter } from "next/router";
+import { Box, Container, RestartButton, Subtitle, Title } from "./styles";
 
 interface FeedbackProps {
   message: string;
   isSucceeded: boolean;
 }
 
-const Feedback = ({ message, isSucceeded }: FeedbackProps) => {
+const Body = ({ message, isSucceeded }: FeedbackProps) => {
   const router = useRouter();
   return (
     <Container>
@@ -32,4 +32,4 @@ const Feedback = ({ message, isSucceeded }: FeedbackProps) => {
   );
 };
 
-export default Feedback;
+export default Body;

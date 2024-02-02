@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import LogoButton from "../logo_button";
+import LogoButton from "../logo-button";
 import { Container, InlineButton, OutlinedButton, Flex } from "./styles";
 
 const Header = () => {

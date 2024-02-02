@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import type { AppProps } from "next/app";
-import { container } from "../src/core/inversify/ioc";
+import { container } from "../src/infra/inversify.config";
 import { Provider } from "../src/provider/inversify-provider";
 import "../src/styles/global.css";
 import Layout from "../src/layout/layout";
