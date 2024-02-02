@@ -1,40 +1,74 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import {
+  CustomDropdown,
+  CustomOption,
+  ErrorMessage,
+  StyledSelect,
+  StyledSelectWrapper,
+} from "./styles";
+import { FieldError, UseFormRegister } from "react-hook-form";
 
-const StyledSelect = styled.select`
-  padding: 0.5rem;
-  border-radius: 8px;
-  border-color: #d5d5d5;
-  border: 1px solid #d5d5d5;
-  outline: none;
-  width: 200px;
-  color: #747474;
-`;
-
-interface Options {
-  value: string;
+interface Option {
   label: string;
+  value: string;
 }
 
 interface SelectProps {
   name: string;
-  options: Options[];
+  options: Option[];
+  placeholder: string;
+  register: UseFormRegister<any>;
+  error?: FieldError | any;
+  isArray?: boolean;
 }
 
-const CustomSelect = ({ name, options }: SelectProps) => {
+const Select = ({
+  name,
+  options,
+  placeholder,
+  register,
+  error,
+  isArray = false,
+}: SelectProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("");
+  const errorMessage = isArray ? error?.pokemon.message : error?.message;
+
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleOptionClick = (value: string) => {
+    setSelectedOption(value);
+    setIsOpen(false);
+  };
+
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       <h3>{name}</h3>
-      <StyledSelect>
-        <option value="" disabled selected>Selecione...</option>
-        {options.map((item) => (
-          <option key={item.value} value={item.value}>
-            {item.label}
-          </option>
-        ))}
-      </StyledSelect>
+      <StyledSelectWrapper>
+        <StyledSelect
+          {...register}
+          $hasError={!!error}
+          $isOpen={isOpen}
+          onClick={handleToggle}
+        >
+          {selectedOption || placeholder}
+        </StyledSelect>
+        <CustomDropdown $isOpen={isOpen}>
+          {options.map((item) => (
+            <CustomOption
+              key={item.value}
+              onClick={() => handleOptionClick(item.value)}
+            >
+              {item.label}
+            </CustomOption>
+          ))}
+        </CustomDropdown>
+        {error && <ErrorMessage>{errorMessage}</ErrorMessage>}
+      </StyledSelectWrapper>
     </div>
   );
 };
 
-export default CustomSelect;
+export default Select;

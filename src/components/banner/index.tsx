@@ -1,12 +1,16 @@
 import Breadcumb from "../breadcumb";
 import { BannerContainer, Subtitle, Title } from "./styles";
 
-const Banner = () => {
+interface BannerProps {
+  title: string;
+  subtitle: string;
+}
+const Banner = ({ title, subtitle }: BannerProps) => {
   return (
     <BannerContainer>
-      <Breadcumb currentName={"Agendar Consulta"} />
-      <Title>Agendar Consulta</Title>
-      <Subtitle>Recupere seus pokémons em 5 segundos</Subtitle>
+      <Breadcumb currentName={title} />
+      <Title>{title}</Title>
+      <Subtitle>{subtitle}</Subtitle>
     </BannerContainer>
   );
 };

@@ -3,10 +3,13 @@ import Form from "../../src/components/form";
 
 const FormSchedule = () => {
   return (
-    <div>
-      <Banner />
+    <>
+      <Banner
+        title={"Agendar Consulta"}
+        subtitle={"Recupere seus pokémons em 5 segundos"}
+      />
       <Form />
-    </div>
+    </>
   );
 };
 
